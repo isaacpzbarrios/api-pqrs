@@ -1,0 +1,70 @@
+.ventana {
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 35%;
+    width: 35%;
+    height: 45%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 1;
+    overflow: auto;
+    opacity: 0.9;
+    -webkit-box-shadow: -1px 9px 42px 2px rgba(0, 0, 0, 0.53);
+    -moz-box-shadow: -1px 9px 42px 2px rgba(0, 0, 0, 0.53);
+    box-shadow: -1px 9px 42px 2px rgba(0, 0, 0, 0.53);
+}
+
+#cerrar {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+
+.ventanaRegistrar {
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 27%;
+    width: 50%;
+    height: 55%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 1;
+    overflow: auto;
+    opacity: 0.9;
+    -webkit-box-shadow: -1px 9px 42px 2px rgba(0, 0, 0, 0.53);
+    -moz-box-shadow: -1px 9px 42px 2px rgba(0, 0, 0, 0.53);
+    box-shadow: -1px 9px 42px 2px rgba(0, 0, 0, 0.53);
+}
+#cerrar01 {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+
+.ventanaSesionUser {
+    display: none;
+    position: fixed;
+    top: 25%;
+    left: 40%;
+    width: 25%;
+    height: 35%;
+    padding: 20px;
+    border-radius: 10px;
+    background-color: white;
+    z-index: 1;
+    overflow: auto;
+    opacity: 0.9;
+    -webkit-box-shadow: -1px 9px 42px 2px rgba(0, 0, 0, 0.53);
+    -moz-box-shadow: -1px 9px 42px 2px rgba(0, 0, 0, 0.53);
+    box-shadow: -1px 9px 42px 2px rgba(0, 0, 0, 0.53);
+}
+#cerrar02 {
+    position: absolute;
+    right: 1px;
+    top: 1px;
+}
+

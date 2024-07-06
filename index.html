@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset='utf-8'>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
+    <title>Sistema PQR(Peticiones, Quejas y Reclamos)</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!--CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <!--JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+        crossorigin="anonymous"></script>
+    <link rel="preconectar" href="https://fonts.googleapis.com">
+    <link rel="preconectar" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https: //fonts.googleapis.com/css2? family= Anek+Devanagari & display=swap" rel="hoja de estilo">
+    <script src="http://code.jquery.com/jquery-latest.js"></script>
+    <script src="js/arriba.js"></script>
+    <script src="js/pqrs.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+    <!-- ENCABEZADO -->
+    <div class="ventana" id="popIniciar">
+        <div id="cerrar"> <a type="button" onclick="cerrar()"><img src="Img/flecha.png"></a>
+        </div>
+        <h2 style="text-align: center; color: #495597;"><b>Iniciar Sesión</b> </h2>
+        <form id="iniciosesionAdminAsesor">
+            <div class="mb-3" style="margin-top: 20px;">
+                <select id="rol" required class="form-select" aria-label="Default select example"
+                    style="border-radius: 10px; width: 50%;">
+                    <option disabled selected>Seleccionar el rol</option>
+                    <option value="1">Administrador</option>
+                    <option value="2">Asesor</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <input placeholder="Usuario" style="border-radius: 10px;" type="text" class="form-control"
+                    id="exampleInputUser" required>
+            </div>
+            <div class="mb-3">
+                <input placeholder="Contraseña" style="border-radius: 10px;" type="password" class="form-control"
+                    id="exampleInputPassword1" required>
+            </div>
+            <div class="mb-3 form-check">
+                <input type="checkbox" class="form-check-input" id="exampleCheck1" required>
+                <label class="form-check-label" for="exampleCheck1">Check</label>
+            </div>
+            <button type="button" style="border-radius: 5px; padding-top: 7px; padding-bottom: 7px;
+            padding-left: 30px; padding-right: 30px; background-color: #495597; color: aliceblue; 
+            border-color: aliceblue;" onclick="iniciarAdminAsesor()">Ingresar</button>
+        </form>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 5px; font-size: small; opacity: 70%;">
+                <div class="rounded float-end">
+                    <a type="button" id="iniciar" style="color: black; margin-left: 30px; margin-right: 30px;"
+                        onclick="iniciar()">
+                        Inicio de sesión</a>
+                </div>
+                <div class="rounded float-end">
+                    <script>
+                        let date = new Date();
+                        let dia;
+                        if (date.getDay() == 0) {
+                            dia = "Domingo";
+                        } else if (date.getDay() == 1) {
+                            dia = "Lunes";
+                        } else if (date.getDay() == 2) {
+                            dia = "Martes";
+                        } else if (date.getDay() == 3) {
+                            dia = "Miercoles";
+                        } else if (date.getDay() == 4) {
+                            dia = "Jueves";
+                        } else if (date.getDay() == 5) {
+                            dia = "Viernes";
+                        } else if (date.getDay() == 6) {
+                            dia = "Sábado";
+                        }
+                        document.write(dia + ", " + date.toISOString().split('T')[0]);
+                    </script>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--Franja azul-->
+    <div class="row">
+        <div style="background-color: #042358;">
+            <div class="col-lg-12 col-md-12 col-sm-12" style="margin-top: 30px;">
+
+            </div>
+        </div>
+    </div>
+    <!--Logo y menu-->
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3 col-sm-3 col-3">
+                <img src="Img/logo_cul_2015.png" class="rounded float-sm-start"
+                    style=" margin-left: 30%; margin-top: 20px;" width="165px" height="63px">
+            </div>
+            <div class="col-lg-9 col-md-9 col-sm-9 col-9"
+                style="margin-top: 20px; margin-right: auto; margin-bottom: 20px;">
+                <nav class="navbar navbar-expand-lg navbar-light">
+                    <a class="navbar-brand" href="#"></a>
+                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="navbarNav">
+                        <ul class="navbar-nav mx-auto">
+                            <li class="nav-item">
+                                <a class="nav-link" href="">INICIO</a>
+                            </li>
+                            <li class="nav-item dropdown">
+                                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                                    data-bs-toggle="dropdown" aria-expanded="false">
+                                    CUL
+                                </a>
+                                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                                    <li><a class="dropdown-item" href="#">BIENVENIDOS</a></li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="index.html">ATENCIÓN Y SERVICIO AL USUARIO</a>
+                                    </li>
+                                    <li>
+                                        <hr class="dropdown-divider">
+                                    </li>
+                                    <li><a class="dropdown-item" href="#">UBICACIÓN</a></li>
+                                </ul>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">PROGRAMAS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">INVESTIGACIÓN</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">EGRESADOS</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">BIENESTAR</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="">BIOSEGURIDAD</a>
+                            </li>
+
+                        </ul>
+                    </div>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- FIN ENCABEZADO -->
+
+
+    <!-- video intro -->
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <video height="auto" width="100%" autoplay muted loop>
+                <source src="Img/video_intro01.mp4" type="video/mp4">
+            </video>
+        </div>
+    </div>
+
+    <!-- Cuerpo pagina home -->
+
+    <!-- Comienzo Popup de registar usuario -->
+    <div class="ventanaRegistrar" id="popRegistrar">
+        <div id="cerrar"> <a type="button" onclick="cerrar01()"><img src="Img/flecha.png"></a>
+        </div>
+        <h2 style="text-align: center; color: #495597;"><b>Registrarte</b> </h2>
+        <h6 style="text-align: center;"> Es rápido y facil </h6>
+        <form id="registroUsuario">
+            <br>
+            <div class="row mb-3">
+                <div class="col">
+                    <input style="border-radius: 10px; " type="text" class="form-control" id="exampleInputNombre"
+                        required placeholder="Nombre">
+                </div>
+                <div class="col">
+                    <input style="border-radius: 10px; " type="text" class="form-control" id="exampleInputApellido"
+                        required placeholder="Apellido">
+                </div>
+            </div>
+            <div class="mb-3">
+                <input style="border-radius: 10px;" type="email" class="form-control" id="exampleInputEmail" required
+                    placeholder="Correo electronico">
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-5">
+                    <select required class="form-select" id="tipoIdentificacion" aria-label="Default select example"
+                        style="border-radius: 10px;">
+                        <option disabled selected>Tipo de identificación</option>
+                        <option value="1">Cedula de ciudadania</option>
+                        <option value="2">Tarjeta de identidad</option>
+                    </select>
+                </div>
+                <div class="col-7">
+                    <input style="border-radius: 10px; " type="text" class="form-control"
+                        id="exampleInputIdentificacion" required placeholder="Número de identificación">
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-5">
+                    <input style="border-radius: 10px;" type="text" class="form-control" id="exampleInputTelefono"
+                        required placeholder="Número movil">
+                </div>
+
+                <div class="col-7">
+                    <input style="border-radius: 10px;" type="password" class="form-control" id="exampleInputContraseña"
+                        required placeholder="Contraseña">
+                </div>
+
+            </div>
+            <div class="mb-3 form-check" style="font-size: small;">
+                <label class="form-check-label">Al hacer clic en Registrarte, aceptas las Condiciones, la Política de
+                    datos</label>
+            </div>
+            <button type="button" id="btmRegistrar" style="border-radius: 5px; padding-top: 7px; padding-bottom: 7px;
+            padding-left: 25px; padding-right: 25px; background-color: #495597; color: aliceblue; 
+            border-color: aliceblue;" onclick="registrar()">Registrarte</button>
+        </form>
+    </div>
+    <!--  Fin del popup registrar -->
+
+    <!--  Comienzo del popup iniciar sesion -->
+    <div class="ventanaSesionUser" id="popSesionUser">
+        <div id="cerrar"> <a type="button" onclick="cerrar02()"><img src="Img/flecha.png"></a>
+        </div>
+        <h2 style="text-align: center; color: #495597;"><b>Iniciar Sesión</b> </h2>
+        <form id="inicioSesionUsuarios">
+            <br>
+            <div class="mb-3">
+                <input style="border-radius: 10px;" type="text" class="form-control" id="exampleInputUsuario" required
+                    placeholder="Usuario">
+            </div>
+            <div class="mb-3">
+                <input style="border-radius: 10px;" type="password" class="form-control" id="exampleInputPassword2"
+                    required placeholder="Contraseña">
+            </div>
+            <button type="button" style="border-radius: 5px; padding-top: 7px; padding-bottom: 7px;
+            padding-left: 30px; padding-right: 30px; background-color: #495597; color: aliceblue; 
+            border-color: aliceblue;" onclick="">Ingresar</button>
+        </form>
+    </div>
+    <!-- Fin del popup -->
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8 col-md-8 col-sm-8">
+                <div style="margin-left: 17%; margin-top: 15px; margin-right: 10%;">
+                    <h3 style="color: #495597;"> Servicio de atención al usuario</h3>
+                    <h6 style="text-align: justify;"> En esta sección usted podrá radicar, hacer seguimiento y realizar
+                        cosultas sobre los informes de su PQR.</h6><br>
+                    <p style="text-align: justify;">
+                        Con el fin de continuar mejorando el servicio y todos los procesos de nuestra Institución, hemos
+                        diseñado herramientas para que nos comuniques tus comentarios, necesidades, expectativas,
+                        percepción y nivel de satisfacción con respecto al servicio recibido por nosotros.
+                    </p><br>
+                    <p style="text-align: justify;"> <img src="Img/peticion.png" alt=""> <b>Petición: </b>Derecho de
+                        todos los usuarios para presentar una solicitud de manera respetuosa
+                        a la entidad por motivos de interés y para obtener pronta respuesta.</p>
+                    <br>
+                    <p style="text-align: justify;"> <img src="Img/queja.png" alt=""> <b>Quejas: </b>Es la manifestación
+                        de un desacuerdo o descontento que un usuario puede presentar
+                        al recibir una atención por parte de un servidor de la entedidad.</p>
+                    <br>
+                    <p style="text-align: justify;"> <img src="Img/Reclamo.png" alt=""> <b>Reclamos: </b>Hace referencia
+                        a una manifestación mediantee la cual se pone en conocimiento
+                        de la entidad la exigencia de un usuario porque no se prestó algún servicio o se hizo de manera
+                        irregular.</p>
+                    <br>
+                    <p style="text-align: justify;"> <img src="Img/idea.png" alt=""> <b>Sugerencia: </b>Recomendaciones
+                        que se sugiere para incidir o mejor un proceso cuyo obtjeto
+                        esta relacionado con la prestación de un servicio.</p>
+                    <br>
+                    <h6> ¿Cómo presentar un PQR en nuestro portal de atención? </h6><br>
+                    <p style="text-align: justify;"> <b>1. Debe estar registrado: </b>Para poder presentar una solicitud
+                        y realizar seguimiento de las PQR debe estar registrado con anterioridad.</p>
+
+                    <p style="text-align: justify;"> <b>2. Ingresar al canal virtual: </b>De tener una cuenta puede
+                        realizar la radicación
+                        en línea a través de nuestros portales de PQR.</p>
+                    <br>
+                </div>
+                <div style="margin-left: 17%; margin-top: 5px;">
+                    <button
+                        style="border-radius: 5px; padding-top: 7px; padding-bottom: 7px;
+                    padding-left: 7px; padding-right: 7px; background-color: #495597; color: aliceblue; border-color: aliceblue;"
+                        onclick="sesion()">
+                        Canal portal de PQR>
+                    </button>
+
+                    <button type="button"
+                        style="margin-left: 7%; border-radius: 5px; padding-top: 7px; padding-bottom: 7px;
+                     padding-left: 7px; padding-right: 7px; background-color: #495597; color: aliceblue; border-color: aliceblue;"
+                        onclick="registrarte()">
+                        Registrarse>
+                    </button>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-4 col-sm-4">
+                <div style=" margin-top: 30px;  text-align: center;">
+                    <p style="opacity: 60%; font-size: small;">¿Necesitas ayuda o tienes alguna pregunta?</p>
+                </div>
+                <div style="margin-top: 10px;  text-align: center; margin-right: 20%;">
+                    <p><img src="Img/llamada.png" alt=""> +57 3243116420</p>
+                </div>
+                <div style="margin-top: 70px; text-align: center; margin-left: 5%;">
+                    <h5 style="color: #495597;">También nos puede encontrar</h5>
+                    <hr style="margin-left: 40px; margin-right: 10%;">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3916.582872968189!2d-74.79294488546937!3d10.994824392173527!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x8ef42d79e57e00e7%3A0x3b195f6bb10f7ede!2sCUL%20CORPORACION%20UNIVERSITARIA%20LATINOAMERICANA!5e0!3m2!1ses!2sco!4v1650248993886!5m2!1ses!2sco"
+                        width="300" height="200" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Fin del cuerpo pagina home -->
+
+    <!-- Boton subir -->
+    <div class="container">
+        <div class="row">
+            <div class="col-12" style="text-align: end;">
+                <img src="Img/Up01.gif" class="ir-arriba" width="62px" height="62px" style="cursor: pointer; opacity: 0.9;"
+                    alt="Volver arriba">
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <div style="background-color: #1b1d26;" class="text-white">
+        <br><br><br>
+        <div class="container">
+            <div class="row">
+                <div style="text-align: center;">
+                    <div style="margin: 0px auto;">
+                        <hr style="margin-left: 10%; margin-right: 10%;">
+                    </div>
+                </div>
+
+                <div class="col-lg-4 col-md-4 col-sm-4 ">
+
+                    <div style="margin: 0px auto; margin-left: 110px;">
+                        <br>
+                        <h6>CONTACTO</h6>
+                        <div style="list-style: none;">
+                            <li>
+                                Calle 58 # 55 - 24A Barranquilla - Colombia
+                            </li>
+                            <br>
+                            <h6><b> Proceso admisión</b></h6>
+
+                            <li>
+                                <b>Celular</b>(+57) 314 89627xx
+                            </li>
+                            <li>
+                                <b>Correo</b> promxxxxx@cul.edu.co
+                            </li>
+                            <br>
+                            <h6><b>Proceso de transferencia y reintegro</b></h6>
+
+                            <li>
+                                <b>Celular</b>(+57) 317 66886xx
+                            </li>
+                            <li>
+                                <b>Correo</b> kilarioxx@cul.edu.co
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div style="margin: 0px auto; margin-left: 110px;">
+                        <br>
+                        <h6>ENLACES DE INTERÉS</h6>
+                        <div style="list-style: none;">
+                            <li>
+                                <a href="" style="text-decoration: none; color: white;">Directorio</a>
+                            </li>
+                            <li>
+                                <a href="" style="text-decoration: none; color: white;">Ley de Protección de Datos</a>
+                            </li>
+                            <li>
+                                <a href="" style="text-decoration: none; color: white;">Información DIAN</a>
+                            </li>
+                            <li>
+                                <a href="" style="text-decoration: none; color: white;">Reserva de audiovisuales</a>
+                            </li>
+                            <li>
+                                <a href="" style="text-decoration: none; color: white;">Atención al usuario</a>
+                            </li>
+                            <li>
+                                <a href="" style="text-decoration: none; color: white;">Asesoría psicológica</a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                <br>
+                <div class="col-lg-4 col-md-4 col-sm-4">
+                    <div style="margin: 0px auto; margin-left: 110px;">
+                        <br>
+                        <h6>
+                            OFERTA ACADÉMICA
+                        </h6>
+                        <div style="list-style: none;">
+                            <li>
+                                <a href="" style="text-decoration: none; color: white;">Profesionales</a>
+                            </li>
+                            <li>
+                                <a href="" style="text-decoration: none; color: white;">Tecnológicos</a>
+                            </li>
+                            <li>
+                                <a href="" style="text-decoration: none; color: white;">Ciclos propedéuticos</a>
+                            </li>
+                        </div>
+                    </div>
+                </div>
+                <br>
+
+                <div style="text-align: center;">
+                    <div style="margin: 0px auto;">
+                        <br>
+                        <hr style="margin-left: 10%; margin-right: 10%;">
+                    </div>
+                </div>
+
+                <div style="text-align: center;">
+                    <div style="margin: 0px auto;">
+                        <p style="color: gray;">© 2022 GROUPCUL - CUL </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FIN FOOTER -->
+
+</body>
+
+</html>
